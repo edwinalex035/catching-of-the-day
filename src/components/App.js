@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
@@ -7,6 +8,18 @@ import sampleFishes from '../sample-fishes';
 import base from '../base';
 
 export default class App extends Component {
+    static propTypes = {
+        fish: PropTypes.shape({
+            image: PropTypes.string,
+            name: PropTypes.string,
+            price: PropTypes.number,
+            desc: PropTypes.string,
+            status: PropTypes.string,
+        }),
+        index: PropTypes.string,
+        updateFish: PropTypes.func,
+    }
+
     state = {
         fishes: {},
         order: {}
@@ -82,7 +95,7 @@ export default class App extends Component {
         return (
             <div className="catch-of-the-day">
                 <div className="menu">
-                    <Header />   
+                    <Header tagline="catch of the day" />   
                     <ul className="fishes">
                         {
                             Object.keys(this.state.fishes)
